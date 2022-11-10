@@ -1,15 +1,16 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import bcrypt from 'bcrypt'
-import jsonwebtoken from 'jsonwebtoken'
 import dotenv from 'dotenv'
-
-const app = express()
+import router from './routes/authRoutes.js'
 dotenv.config()
 
-app.get('/', async (req, res) => {
-    res.status(200).json({msg: "Bem vindo a nossa api!"})
-})
+const app = express()
+
+//JSON response
+app.use(express.json())
+app.use('/', router)
+
+
 
 // Credencials
 const dbUser = process.env.DB_USER
